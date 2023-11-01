@@ -1,60 +1,62 @@
 // AXIOS CARDS SCRIPTS
-const row = document.getElementById("row")
-async function filmCards() {
-    const response = await axios("https://api.tvmaze.com/shows")
-    response.data.sort((a, b) => (b.rating.average > a.rating.average ? 1 : a.rating.average > b.rating.average ? -1 : 0));
-    let col3 = ""
-    response.data.forEach(element => {
-        col3+=
-        `
-        <div class="col-12 col-md-6 col-lg-4  col-xl-3">
-            <div class="filmCard">
-                <div class="card-img"><img src="${element.image.medium}" class="card-img-top" alt="..."> </div>
-                <div class="category"> <h5 class="card-title">${element.name}</h5></div>
-                <div class="heading"> <span><i class="fa-solid fa-star" style="color: #f5c518;"></i></span> ${element.rating.average}
-                    <div class="author">LANGUAGE : <span class="name">${element.language}</span></div>
-                </div>
-            </div>
-        </div>
-        `
-        row.innerHTML = col3
-  
-        // console.log(response.data);
-    });
-}
-filmCards()
+// const row = document.getElementById("row")
+// async function filmCards() {
+//     const response = await axios("https://api.tvmaze.com/shows")
+//     response.data.sort((a, b) => (b.rating.average > a.rating.average ? 1 : a.rating.average > b.rating.average ? -1 : 0));
+//     let col3 = ""
+//     response.data.forEach(element => {
+//         col3+=
+//         `
+//         <div class="col-12 col-md-6 col-lg-4  col-xl-3">
+//             <div class="filmCard">
+//                 <div class="card-img"><img src="${element.image.medium}" class="card-img-top" alt="..."> </div>
+//                 <div class="category"> <h5 class="card-title">${element.name}</h5></div>
+//                 <div class="heading"> <span><i class="fa-solid fa-star" style="color: #f5c518;"></i></span> ${element.rating.average}
+//                     <div class="author">LANGUAGE : <span class="name">${element.language}</span></div>
+//                 </div>
+//             </div>
+//         </div>
+//         `
+//         row.innerHTML = col3
+//         // console.log(response.data);
+//     }) 
+    
+// }
+// filmCards()
 
 
 
 
 //FETCH CARDS SCRIPTS
-// const row = document.getElementById("row")
-// async function filmCards() {
-//     const response = await fetch("https://api.tvmaze.com/shows")
-//     .then(res => res.json())
-//     .then(data =>{
-//         data.sort((a, b) => (b.rating.average > a.rating.average ? 1 : a.rating.average > b.rating.average ? -1 : 0));
+const row = document.getElementById("row")
+async function filmCards() {
+    const response = await fetch("https://api.tvmaze.com/shows")
+    .then(res => res.json())
+    .then(data =>{
+        data.sort((a, b) => (b.rating.average > a.rating.average ? 1 : a.rating.average > b.rating.average ? -1 : 0));
 
-//         let col3 = ''
-//         data.forEach((element)=>{
-//             col3 += 
-//             `
-//             <div class="col-12 col-md-6 col-lg-3">
-//             <div class="filmCard">
-//                 <div class="card-img"><img src="${element.image.medium}" class="card-img-top" alt="..."> </div>
-//                 <div class="category"> <h5 class="card-title">${element.name}</h5></div>
-//                 <div class="heading"> ${element.rating.average}
-//                     <div class="author">  <span class="name">${element.language}</span></div>
-//                 </div>
-//             </div>
-//         </div>
-//             `
-//         })
-//         row.innerHTML = col3
-//         console.log(data);
-//     })
-// }
-// filmCards()
+        let col3 = ''
+        data.forEach((element)=>{
+            col3 += 
+            `
+            <div class="col-12 col-md-6 col-lg-3">
+            <div class="filmCard">
+                <div class="card-img"><img src="${element.image.medium}" class="card-img-top" alt="..."> </div>
+                <div class="category"> <h5 class="card-title">${element.name}</h5></div>
+                <div class="heading"><span><i class="fa-solid fa-star" style="color: #f5c518;"></i></span> ${element.rating.average}
+                    <div class="author"> LANGUAGE : <span class="name">${element.language}</span></div>
+                </div>
+            </div>
+        </div>
+            `
+        })
+        row.innerHTML = col3
+        console.log(data);
+    }).catch (err =>{
+      console.error("error", err);
+    })
+}
+filmCards()
 
 
 
